@@ -6,3 +6,4 @@ spec/dummy/tmp/
 spec/dummy/.sass-cache
 *.swp
 .ruby-gemset
+Gemfile.lock
