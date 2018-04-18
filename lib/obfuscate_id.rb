@@ -20,18 +20,14 @@ module ObfuscateId
     def find(*args)
       scope = args.slice!(0)
       options = args.slice!(0) || {}
-      if has_obfuscated_id? && !options[:no_obfuscated_id]
+      if options[:obfuscated_id]
         if scope.is_a?(Array)
-          scope.map! {|a| deobfuscate_id(a).to_i}
+          scope.map! { |a| deobfuscate_id(a).to_i }
         else
-          scope = deobfuscate_id(scope)
+          scope = deobfuscate_id(scope).to_i
         end
       end
       super(scope)
-    end
-
-    def has_obfuscated_id?
-      true
     end
 
     def deobfuscate_id(obfuscated_id)
